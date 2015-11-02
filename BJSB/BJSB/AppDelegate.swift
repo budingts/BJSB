@@ -116,15 +116,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK: - 功能区域
     func showViewController(type:Int)
     {
-        if type == LOGIN_VC {
-             loginVc=LoginVC();
-            let nav=UINavigationController.init(rootViewController: DuiZhangVC())
-            self.window!.rootViewController = loginVc;
-        }else if(type == HOME_VC){
-            homeVc=HomeVC();
-            let nav=UINavigationController.init(rootViewController: DuiZhangVC())
-            self.window!.rootViewController = nav;
-        }
+        let nav=UINavigationController.init(rootViewController: LoginVC())
+        self.window!.rootViewController = nav;
+        
     }
 
 }

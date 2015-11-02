@@ -16,7 +16,7 @@ class DuiZhangVC: BaseVC,UIPickerViewDataSource,UIPickerViewDelegate {
     var topRightLabel = UILabel()
     var currentYearLabel = UIButton()
     var searchBtn = UIButton()
-    var tableView = UITableView()
+    var tableView = UIWebView()
     var pickView = UIPickerView()
     
     
@@ -105,7 +105,25 @@ class DuiZhangVC: BaseVC,UIPickerViewDataSource,UIPickerViewDelegate {
    
     
     func loadData(){
-   
+//        do {
+//            func testtry() throws {
+//                let document = try HTMLDocument(string: dataStr, encoding: NSUTF8StringEncoding)
+//                ////cell[data[text()='Alpha'] and data[@type='String']]
+//                var result=document.xpath("//td[@align='center']")
+//                //var result=document.xpath("//td")
+//                
+//                print(result.count)
+//                for element in result {
+//                    print("--\(index) ---\(element.tag): \(element.attributes)")
+//                }
+//                
+//            }
+//            try testtry()
+//            
+//        } catch {
+//            
+//        }
+
         
     }
     //MARK: - UI事件
@@ -116,6 +134,7 @@ class DuiZhangVC: BaseVC,UIPickerViewDataSource,UIPickerViewDelegate {
             })
             
             }) { (Bool) -> Void in
+                
                 
         }
         
@@ -132,6 +151,7 @@ class DuiZhangVC: BaseVC,UIPickerViewDataSource,UIPickerViewDelegate {
      }
      func pickerView(pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat
      {
+        //
         return 200
      }
      func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat
@@ -140,9 +160,9 @@ class DuiZhangVC: BaseVC,UIPickerViewDataSource,UIPickerViewDelegate {
      }
      func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
      {
-        var dateFormatter2 = NSDateFormatter()
+        let dateFormatter2 = NSDateFormatter()
         dateFormatter2.dateFormat = "yyyy"
-        var now = NSDate()
+        let now = NSDate()
         let nowString = dateFormatter2.stringFromDate(now)
         return nowString
      }

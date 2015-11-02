@@ -33,6 +33,7 @@ class LoginVC: BaseVC,UITextFieldDelegate {
     //MARK: - 系统周期方法
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(true, animated:false)
         initUI()
         getVCode()
         self.registrationkeyBoardChangeFrame();//监听键盘高度
@@ -263,52 +264,29 @@ class LoginVC: BaseVC,UITextFieldDelegate {
             
             let dataStr = NSString(data:data!, encoding:NSUTF8StringEncoding) as! String
                 print(dataStr)
-            
-            do {
-                func testtry() throws {
-                  let document = try HTMLDocument(string: dataStr, encoding: NSUTF8StringEncoding)
-                    ////cell[data[text()='Alpha'] and data[@type='String']]
-                 var result=document.xpath("//td[@align='center']")
-                //var result=document.xpath("//td")
-                
-                 print(result.count)
-                    for element in result {
-                        print("--\(index) ---\(element.tag): \(element.attributes)")
-                    }
-                   
-                }
-                try testtry()
-
-            } catch {
-
+            if self.safeguard(dataStr) {//维护中
+                PKHUD.sharedHUD.contentView = PKHUDTextView(text: "系统维护中，敬请期待");
+                PKHUD.sharedHUD.show()
+                PKHUD.sharedHUD.hide(afterDelay: 2.5);
+            }else if self.idNothingError(dataStr) {
+                PKHUD.sharedHUD.contentView = PKHUDTextView(text: "根据身份证号 查不出任何记录");
+                PKHUD.sharedHUD.show()
+                PKHUD.sharedHUD.hide(afterDelay: 2.5);
+            }else if self.passwordError(dataStr) {
+                PKHUD.sharedHUD.contentView = PKHUDTextView(text: "密码错误");
+                PKHUD.sharedHUD.show()
+                PKHUD.sharedHUD.hide(afterDelay: 2.5);
+            }else if self.vcodeError(dataStr){
+                PKHUD.sharedHUD.contentView = PKHUDTextView(text: "验证码有误");
+                PKHUD.sharedHUD.show()
+                PKHUD.sharedHUD.hide(afterDelay: 2.5);
+            }else{//登录成功
+                NSUserDefaults.standardUserDefaults().setObject(userName, forKey: "userName")
+                NSUserDefaults.standardUserDefaults().setObject(password, forKey: "password")
+                let shareApp = UIApplication.sharedApplication().delegate as! AppDelegate
+                shareApp.showViewController(shareApp.HOME_VC)
             }
-           
-                
-             
-                
-//            if self.safeguard(dataStr) {//维护中
-//                PKHUD.sharedHUD.contentView = PKHUDTextView(text: "系统维护中，敬请期待");
-//                PKHUD.sharedHUD.show()
-//                PKHUD.sharedHUD.hide(afterDelay: 2.5);
-//            }else if self.idNothingError(dataStr) {
-//                PKHUD.sharedHUD.contentView = PKHUDTextView(text: "根据身份证号 查不出任何记录");
-//                PKHUD.sharedHUD.show()
-//                PKHUD.sharedHUD.hide(afterDelay: 2.5);
-//            }else if self.passwordError(dataStr) {
-//                PKHUD.sharedHUD.contentView = PKHUDTextView(text: "密码错误");
-//                PKHUD.sharedHUD.show()
-//                PKHUD.sharedHUD.hide(afterDelay: 2.5);
-//            }else if self.vcodeError(dataStr){
-//                PKHUD.sharedHUD.contentView = PKHUDTextView(text: "验证码有误");
-//                PKHUD.sharedHUD.show()
-//                PKHUD.sharedHUD.hide(afterDelay: 2.5);
-//            }else{//登录成功
-//                NSUserDefaults.standardUserDefaults().setObject(userName, forKey: "userName")
-//                NSUserDefaults.standardUserDefaults().setObject(password, forKey: "password")
-//                let shareApp = UIApplication.sharedApplication().delegate as! AppDelegate
-//                shareApp.showViewController(shareApp.HOME_VC)
-//            }
-//            
+            
            
                 
         }
