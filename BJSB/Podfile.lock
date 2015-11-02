@@ -1,0 +1,29 @@
+PODS:
+  - Alamofire (3.1.0)
+  - FMDB (2.5):
+    - FMDB/standard (= 2.5)
+  - FMDB/common (2.5)
+  - FMDB/standard (2.5):
+    - FMDB/common
+  - Fuzi (0.2.0)
+  - PKHUD (2.2.4)
+  - SnapKit (0.15.0)
+  - SWXMLHash (2.0.2)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.0)
+  - FMDB (~> 2.5)
+  - Fuzi (~> 0.2.0)
+  - PKHUD
+  - SnapKit (~> 0.15.0)
+  - SWXMLHash (~> 2.0.0)
+
+SPEC CHECKSUMS:
+  Alamofire: 415bd7f56197722978759078486689f7ef913dce
+  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
+  Fuzi: 3f495a9b1f5f0a34eb809442be314d6cce3ce4cb
+  PKHUD: 4ec64535c98da203a3eb7303a58e13ac0bff1f8f
+  SnapKit: 4962eed2ee18e48cbd2b2292fffc57efe7235f87
+  SWXMLHash: 9e6bd7db2e8275eaf3d2082265623d6e749e169d
+
+COCOAPODS: 0.39.0
